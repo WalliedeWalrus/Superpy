@@ -1,0 +1,112 @@
+Welcome to the Superpy shop user guide.
+
+All functions are passed from the command line and always start with: python main.py
+This guide will explain how, with some examples.
+
+This program has 4 different functions:
+
+Buy products: 
+
+    With the argument 'buy' you can buy products that will be appended to the bought.csv.
+
+    Required arguments are '--product_name', '--price', '--expiration_date' and '--amount'.
+    '--product_name' = The name of the product (use underscore if product name has multiple words).
+    '--price' = Buying price of the product (requires a number and accepts number after decimal point).
+    '--expiration_date' = Expiration date of the product. The date format is 'YYYY-MM-DD'.
+    '--amount' = The amount of the product you want to buy. 
+
+    Each new bought item(s) will be given an unique id automatically.
+
+    For example:
+
+        python main.py buy --product_name mango --price 1.0 --expiration_date 2024-06-24 --amount 10
+        python main.py buy --product_name apple_juice --price 2.5 --expiration_date 2024-12-30 --amount 4
+
+    
+    
+Sell products:
+
+    With the argument 'sell' you can sell the products from bought.csv which will be appended to sold.csv.
+
+    Requires arguments are '--product_name', '--price' and '--amount'.
+    '--product_name' = The name of the product (use underscore if product name has multiple words).
+    '--price' = Selling price of the product (requires a number and accepts number after decimal point).
+    '--amount' = The amount of the product you want to sell.
+
+    Note that the product name has to be exactly the same as the one in bought.csv.
+    If the product (amount) is not in bought.csv an error message will be shown that the product or requested amount is not in stock.
+
+    For example:
+
+        python main.py sell --product_name mango --price 4.0 --amount 2
+        python main.py sell --product_name apple_juice --price 5.0 --amount 2
+
+
+Change the date:
+
+    In date.txt is the current date (in the application named today) stored. 
+
+    You can change the current date with the commands '--advance_time', '--reverse_time' and '--current_time'.
+    '--advance_date' = advance date by entered number.
+    '--reverse_date'= reverse date by entered number.
+    '--current_date' = changes date to current official date.
+    '--set_date' = Set a specific date. Date format is 'YYYY-MM-DD'."
+
+    For example:
+    
+    Assuming the day today is 2024-01-17 and the command line is:
+
+        python main.py --advance_date 2     (then the date is advanced 2 days to 2024-01-19 inside the text file) 
+        python main.py --reverse_date 4     (then the date is reversed 4 days to 2024-01-13 inside the text file)
+
+    You can change the date back to the current date with:
+
+        python main.py --current_date
+
+    You can also set a specific date with:
+
+        python main.py --set_date 2024-01-30
+
+    Please note that advancing and reversing the time and buying and selling products will result in buy and sell date having the changed date.
+    So when you buy a product with an advanced date and sell it on a reversed date will produce the message that the product is not in stock.
+  
+
+Report:
+
+    With 'report' you can report specific data. An additional argument specifies the type of report.
+    You can choose between 'inventory', 'revenue' or 'profit'.
+
+    'inventory' = reports the products currently in inventory.
+    'revenue' = reports the revenue.
+    'profit' = reports the profit.
+
+    Each of the reports als need one of the following date type arguments 
+    
+    '--today' = report products sold today. No value needed.
+    '--yesterday'= Reports products yesterday. No value needed.
+    '--date' = Reports products from specific date. Data format is 'YYYY-MM-DD'. For profit and revenue date type 'YYYY-MM' and 'YYYY' can be used
+
+    For example:
+
+    python main.py report inventory --today
+    python main.py report inventory --yesterday
+    python main.py report inventory --date 2024-01-18
+    python main.py report revenue --today
+    python main.py report revenue --yesterday
+    python main.py report revenue --date 2024-01-18
+    python main.py report revenue --date 2024-01
+    python main.py report profit --today
+    python main.py report profit --yesterday
+    python main.py report profit --date 2024-01-18
+    python main.py report profit --date 2024-01
+
+
+Additional help is available with the '-h' or '--help' arguments
+
+For example:
+
+    python main.py -h
+    python main.py report revenue --help
+
+
+Thank you for using Superpy.
